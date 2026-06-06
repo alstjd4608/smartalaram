@@ -16,7 +16,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class QuizActivity extends AppCompatActivity {
@@ -34,6 +36,7 @@ public class QuizActivity extends AppCompatActivity {
     private static final int REQUIRED_SOLVED = 5;
     private long quizStartTime;
     private QuizStatsStorage statsStorage;
+    private List<String> usedQuestions = new ArrayList<>();
     private TextView tvProgress;
 
     @Override
@@ -106,7 +109,8 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void loadNewQuiz() {
-        currentQuiz = QuizGenerator.generateQuiz(this);
+        currentQuiz = QuizGenerator.generateQuiz(this, usedQuestions);
+        usedQuestions.add(currentQuiz.getQuestion());
         tvQuestion.setText(currentQuiz.getQuestion());
 
         for (int i = 0; i < 4; i++) {

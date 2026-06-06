@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <!-- Title -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="새 알람"
+        android:textColor="@color/text_primary"
+        android:textSize="22sp"
+        android:fontFamily="sans-serif-medium" />
+
+    <View
+        android:layout_width="40dp"
+        android:layout_height="3dp"
+        android:background="@color/primary"
+        android:layout_marginTop="8dp" />
+
+    <!-- Time Display -->
+    <LinearLayout
+        android:id="@+id/timePickerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_time_display"
+        android:gravity="center"
+        android:padding="24dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:id="@+id/tvSelectedHour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="07"
+            android:textColor="@color/primary_light"
+            android:textSize="56sp"
+            android:fontFamily="sans-serif-thin" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":"
+            android:textColor="@color/primary_light"
+            android:textSize="56sp"
+            android:fontFamily="sans-serif-thin"
+            android:layout_marginHorizontal="4dp" />
+
+        <TextView
+            android:id="@+id/tvSelectedMinute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="30"
+            android:textColor="@color/primary_light"
+            android:textSize="56sp"
+            android:fontFamily="sans-serif-thin" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="탭하여 시간 변경"
+        android:textColor="@color/text_hint"
+        android:textSize="12sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp" />
+
+    <!-- Label Input -->
+    <EditText
+        android:id="@+id/etAlarmLabel"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/bg_input"
+        android:hint="@string/alarm_label_hint"
+        android:textColor="@color/text_primary"
+        android:textColorHint="@color/text_hint"
+        android:textSize="14sp"
+        android:paddingHorizontal="16dp"
+        android:fontFamily="sans-serif"
+        android:maxLines="1"
+        android:inputType="text"
+        android:layout_marginTop="20dp" />
+
+    <!-- Repeat Days -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/repeat_label"
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginTop="20dp" />
+
+    <LinearLayout
+        android:id="@+id/repeatDaysContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="12dp">
+
+        <TextView
+            android:id="@+id/chipMon"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:text="@string/mon"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:background="@drawable/bg_day_chip"
+            android:layout_marginEnd="6dp"
+            android:fontFamily="sans-serif-medium" />
+
+        <TextView
+            android:id="@+id/chipTue"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:text="@string/tue"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:background="@drawable/bg_day_chip"
+            android:layout_marginEnd="6dp"
+            android:fontFamily="sans-serif-medium" />
+
+        <TextView
+            android:id="@+id/chipWed"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:text="@string/wed"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:background="@drawable/bg_day_chip"
+            android:layout_marginEnd="6dp"
+            android:fontFamily="sans-serif-medium" />
+
+        <TextView
+            android:id="@+id/chipThu"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:text="@string/thu"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:background="@drawable/bg_day_chip"
+            android:layout_marginEnd="6dp"
+            android:fontFamily="sans-serif-medium" />
+
+        <TextView
+            android:id="@+id/chipFri"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:text="@string/fri"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:background="@drawable/bg_day_chip"
+            android:layout_marginEnd="6dp"
+            android:fontFamily="sans-serif-medium" />
+
+        <TextView
+            android:id="@+id/chipSat"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:text="@string/sat"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:background="@drawable/bg_day_chip"
+            android:layout_marginEnd="6dp"
+            android:fontFamily="sans-serif-medium" />
+
+        <TextView
+            android:id="@+id/chipSun"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:text="@string/sun"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:background="@drawable/bg_day_chip"
+            android:fontFamily="sans-serif-medium" />
+    </LinearLayout>
+
+    <!-- Volume -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="알람 볼륨"
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginTop="20dp" />
+
+    <SeekBar
+        android:id="@+id/sbVolume"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:max="100"
+        android:progress="100"
+        android:progressTint="@color/primary"
+        android:thumbTint="@color/primary" />
+
+    <!-- Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:layout_marginTop="28dp">
+
+        <TextView
+            android:id="@+id/btnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:text="삭제"
+            android:textColor="@color/quiz_wrong"
+            android:textSize="15sp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:paddingHorizontal="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:text="취소"
+            android:textColor="@color/text_secondary"
+            android:textSize="15sp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:paddingHorizontal="20dp"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:text="저장"
+            android:textColor="@color/text_on_primary"
+            android:textSize="15sp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:paddingHorizontal="28dp"
+            android:background="@drawable/bg_button_primary"
+            android:layout_marginStart="12dp"
+            android:clickable="true"
+            android:focusable="true" />
+    </LinearLayout>
+</LinearLayout>

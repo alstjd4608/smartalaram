@@ -1,0 +1,42 @@
+[스마트 알람 앱 - 프로젝트 구조 및 아키텍처 안내]
+
+1. 기본 아키텍처
+- 패턴: Activity 중심의 MVC(Model-View-Controller) 구조
+- 언어: Java
+- 로컬 데이터 저장: SharedPreferences 기반의 JSON 직렬화/역직렬화 방식으로 구현 (빠른 프로토타이핑 목적, 필요시 Room DB 등 다른 로컬 DB로 교체 용이)
+
+2. 주요 클래스별 역할 명세서
+
+[데이터 모델 (Models)]
+- AlarmItem.java : 개별 알람의 속성(ID, 시간, 반복 요일, 활성화 여부, 볼륨 등)을 정의하는 데이터 클래스
+- CustomQuiz.java : 사용자가 직접 등록한 퀴즈 모델
+- QuizStatItem.java : 문제 풀이 통계(유형, 소요 시간, 정답 여부, 타임스탬프) 모델
+
+[데이터 저장소 (Storage)]
+* 모든 Storage 클래스는 SharedPreferences를 이용해 데이터를 관리함
+- AlarmStorage.java : 알람 설정 데이터 입출력
+- CustomQuizStorage.java : 사용자 지정 퀴즈 데이터 입출력
+- QuizStatsStorage.java : 퀴즈 풀이 결과 입출력 (앱 용량 관리를 위해 최근 1000개까지만 유지되도록 처리)
+
+[알람 백그라운드 로직 (Core / Services)]
+- AlarmScheduler.java : Android의 AlarmManager를 이용해 시스템에 알람 인텐트를 예약하거나 취소하는 유틸리티
+- AlarmReceiver.java : 예약된 시간에 트리거되는 BroadcastReceiver. 상단 헤드업 알림을 생성하고 오디오 재생 서비스(AlarmSoundService)를 시작함
+- AlarmSoundService.java : 실제 알람 소리와 진동을 담당하는 Foreground Service.
+  * 보안/방어 로직 적용: 사용자가 최근 앱 목록(Recents)에서 앱을 스와이프하여 강제 종료하더라도, onTaskRemoved() 콜백을 통해 1초 후 서비스가 자동 재시작되도록 구현됨
+- QuizGenerator.java : 사칙연산(덧셈, 뺄셈, 곱셈) 문제와 사용자가 추가한 커스텀 퀴즈를 50:50 확률로 혼합하여 출제하는 로직 담당
+
+[사용자 인터페이스 (Activities)]
+- MainActivity.java : 메인 화면. AlarmAdapter를 통해 알람 목록(RecyclerView)을 관리하며, 알람 추가 및 수정 다이얼로그 기능 수행
+- QuizActivity.java : 알람이 울릴 때 잠금화면 위로 팝업되는(ShowWhenLocked) 퀴즈 화면.
+  * 강제 종료 방지를 위해 뒤로 가기(onBackPressed)가 차단되어 있음
+  * 설정된 횟수(5문제)를 통과해야만 AlarmSoundService를 종료시킴
+- CustomQuizActivity.java : 커스텀 퀴즈 목록 조회 및 추가/삭제 관리 화면
+- StatsActivity.java : 누적된 퀴즈 통계 데이터를 분석하여 정답률, 문제당 평균 시간, 취약 유형을 시각화하는 화면
+
+[어댑터 (Adapters)]
+- AlarmAdapter.java : 메인 화면 알람 리스트 바인딩. 스위치 토글, 클릭(수정), 롱클릭(삭제) 리스너 포함
+- CustomQuizAdapter.java : 퀴즈 관리 화면 리스트 바인딩
+
+3. 향후 유지보수 시 참고사항
+- 데이터베이스 마이그레이션: 현재 JSON 기반 저장소들을 SQLite(또는 Room)로 전환할 경우, 기존 Storage 클래스의 메서드 시그니처(예: loadStats(), addStat() 등)를 동일하게 유지하면 Activity 계층의 코드 수정을 최소화할 수 있음.
+- 알람 소리 볼륨: 각 알람마다 고유 볼륨값을 가지며, AlarmSoundService가 실행될 때 해당 알람의 ID로 볼륨값을 조회하여 MediaPlayer에 주입하는 방식을 사용함.

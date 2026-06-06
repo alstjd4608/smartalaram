@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_alarm_item"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:gravity="center_vertical"
+    android:layout_marginBottom="10dp">
+
+    <!-- Number Badge -->
+    <TextView
+        android:id="@+id/tvQuizNumber"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:text="1"
+        android:textColor="@color/text_on_primary"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:background="@drawable/bg_fab" />
+
+    <!-- Content -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="14dp">
+
+        <TextView
+            android:id="@+id/tvQuizQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="대한민국의 수도는?"
+            android:textColor="@color/text_primary"
+            android:textSize="15sp"
+            android:fontFamily="sans-serif-medium"
+            android:maxLines="2"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/tvQuizOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="✓ 서울  •  부산  •  대구  •  인천"
+            android:textColor="@color/text_hint"
+            android:textSize="12sp"
+            android:fontFamily="sans-serif"
+            android:layout_marginTop="4dp"
+            android:maxLines="1"
+            android:ellipsize="end" />
+    </LinearLayout>
+
+    <!-- Delete Button -->
+    <ImageView
+        android:id="@+id/btnDeleteQuiz"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:padding="6dp"
+        android:src="@drawable/ic_delete"
+        app:tint="@color/text_hint"
+        android:contentDescription="delete quiz"
+        android:clickable="true"
+        android:focusable="true" />
+
+</LinearLayout>

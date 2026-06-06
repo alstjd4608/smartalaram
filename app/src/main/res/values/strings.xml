@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">Smart Alarm</string>
+    <string name="alarm_channel_name">Smart Alarm Notifications</string>
+    <string name="alarm_channel_description">알람 알림 채널</string>
+    <string name="notification_title">⏰ 알람이 울리고 있습니다!</string>
+    <string name="notification_text">탭하여 퀴즈를 풀고 알람을 끄세요</string>
+    <string name="quiz_title">퀴즈를 풀어주세요!</string>
+    <string name="quiz_instruction">정답을 맞추면 알람이 꺼집니다</string>
+    <string name="submit_answer">정답 확인</string>
+    <string name="correct_answer">정답입니다! 🎉</string>
+    <string name="wrong_answer">틀렸습니다. 다시 시도하세요!</string>
+    <string name="alarm_off">알람이 꺼졌습니다</string>
+    <string name="set_alarm">알람 설정</string>
+    <string name="cancel_alarm">알람 취소</string>
+    <string name="no_alarm_set">설정된 알람이 없습니다</string>
+    <string name="alarm_set_for">알람이 %1$s에 설정되었습니다</string>
+    <string name="next_alarm">다음 알람</string>
+    <string name="good_morning">좋은 아침이에요!</string>
+    <string name="greeting_afternoon">좋은 오후예요!</string>
+    <string name="greeting_evening">좋은 저녁이에요!</string>
+    <string name="greeting_night">좋은 밤이에요!</string>
+    <string name="alarm_label_hint">알람 이름 (선택)</string>
+    <string name="repeat_label">반복</string>
+    <string name="mon">월</string>
+    <string name="tue">화</string>
+    <string name="wed">수</string>
+    <string name="thu">목</string>
+    <string name="fri">금</string>
+    <string name="sat">토</string>
+    <string name="sun">일</string>
+
+    <!-- Custom Quiz -->
+    <string name="custom_quiz_title">내 퀴즈 관리</string>
+    <string name="custom_quiz_subtitle">나만의 퀴즈를 추가하고 관리하세요</string>
+    <string name="custom_quiz_info">추가한 퀴즈는 알람이 울릴 때 수학 문제와 랜덤으로 출제됩니다. 퀴즈가 없으면 수학 문제만 나옵니다.</string>
+    <string name="add_custom_quiz">새 퀴즈 추가</string>
+    <string name="quiz_question_label">문제</string>
+    <string name="quiz_question_hint">문제를 입력하세요 (예: 대한민국의 수도는?)</string>
+    <string name="quiz_options_label">선택지 (4개)</string>
+    <string name="quiz_correct_hint">정답인 번호를 탭하세요</string>
+    <string name="option_1_hint">선택지 1</string>
+    <string name="option_2_hint">선택지 2</string>
+    <string name="option_3_hint">선택지 3</string>
+    <string name="option_4_hint">선택지 4</string>
+    <string name="no_custom_quiz">등록된 퀴즈가 없습니다</string>
+    <string name="no_custom_quiz_hint">+ 버튼을 눌러 나만의 퀴즈를 추가하세요</string>
+    <string name="manage_quiz">퀴즈 관리</string>
+</resources>

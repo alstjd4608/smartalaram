@@ -15,13 +15,20 @@ public class QuizGenerator {
      * Generate a quiz, randomly picking from custom quizzes or math quizzes.
      * If custom quizzes exist, there's a 50% chance of getting one.
      */
-    public static Quiz generateQuiz(Context context) {
+    public static Quiz generateQuiz(Context context, List<String> usedQuestions) {
         CustomQuizStorage storage = new CustomQuizStorage(context);
         List<CustomQuiz> customQuizzes = storage.loadQuizzes();
 
+        List<CustomQuiz> availableQuizzes = new ArrayList<>();
+        for (CustomQuiz q : customQuizzes) {
+            if (usedQuestions == null || !usedQuestions.contains(q.getQuestion())) {
+                availableQuizzes.add(q);
+            }
+        }
+
         // If custom quizzes exist, 50% chance to use one
-        if (!customQuizzes.isEmpty() && random.nextBoolean()) {
-            return fromCustomQuiz(customQuizzes.get(random.nextInt(customQuizzes.size())));
+        if (!availableQuizzes.isEmpty() && random.nextBoolean()) {
+            return fromCustomQuiz(availableQuizzes.get(random.nextInt(availableQuizzes.size())));
         }
 
         return generateMathQuiz();

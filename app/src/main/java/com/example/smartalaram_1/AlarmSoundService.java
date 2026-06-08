@@ -34,6 +34,10 @@ public class AlarmSoundService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            return START_STICKY;
+        }
+
         createServiceChannel();
 
         Intent quizIntent = new Intent(this, QuizActivity.class);

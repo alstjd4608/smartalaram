@@ -21,6 +21,7 @@ import androidx.core.app.NotificationCompat;
 
 public class AlarmSoundService extends Service {
 
+    public static boolean isRunning = false;
     private static final String CHANNEL_ID = "alarm_sound_service_channel";
     private static final int FOREGROUND_ID = 2001;
 
@@ -38,6 +39,7 @@ public class AlarmSoundService extends Service {
             return START_STICKY;
         }
 
+        isRunning = true;
         createServiceChannel();
 
         Intent quizIntent = new Intent(this, QuizActivity.class);
@@ -124,6 +126,7 @@ public class AlarmSoundService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        isRunning = false;
         if (mediaPlayer != null) {
             mediaPlayer.stop();
             mediaPlayer.release();

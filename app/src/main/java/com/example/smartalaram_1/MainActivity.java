@@ -422,6 +422,11 @@ public class MainActivity extends AppCompatActivity implements AlarmAdapter.OnAl
     @Override
     protected void onResume() {
         super.onResume();
+        if (AlarmSoundService.isRunning) {
+            Intent quizIntent = new Intent(this, QuizActivity.class);
+            quizIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(quizIntent);
+        }
         loadAlarms();
     }
 

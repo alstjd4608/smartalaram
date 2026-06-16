@@ -211,6 +211,18 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+        // 사용자가 홈 버튼이나 제스처로 나가려고 할 때 다시 강제로 띄움
+        if (solvedCount < REQUIRED_SOLVED) {
+            Intent intent = new Intent(this, QuizActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            Toast.makeText(this, "문제를 모두 풀어야 종료할 수 있습니다!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
     public void onBackPressed() {
         Toast.makeText(this, "5문제를 모두 풀어야 알람이 꺼집니다!", Toast.LENGTH_SHORT).show();
     }

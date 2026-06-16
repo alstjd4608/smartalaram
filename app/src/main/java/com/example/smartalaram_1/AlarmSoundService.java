@@ -40,25 +40,30 @@ public class AlarmSoundService extends Service {
         }
 
         isRunning = true;
+
+        int alarmId = intent != null ? intent.getIntExtra("alarm_id", -1) : -1;
+        AlarmState.setRinging(this, true, alarmId);
+
         createServiceChannel();
 
         Intent quizIntent = new Intent(this, QuizActivity.class);
         quizIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
         PendingIntent pendingIntent = PendingIntent.getActivity(
-                this, 0, quizIntent,
+                this,
+                0,
+                quizIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
         );
 
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_notification)
                 .setContentTitle("알람이 울리고 있습니다")
-                .setContentText("탭하여 알람 끄기")
+                .setContentText("탭하여 문제 풀이 화면으로 이동")
                 .setContentIntent(pendingIntent)
                 .setOngoing(true)
                 .setPriority(NotificationCompat.PRIORITY_LOW)
                 .build();
-
-        int alarmId = intent != null ? intent.getIntExtra("alarm_id", -1) : -1;
 
         startForeground(FOREGROUND_ID, notification);
 
@@ -127,6 +132,7 @@ public class AlarmSoundService extends Service {
     public void onDestroy() {
         super.onDestroy();
         isRunning = false;
+        AlarmState.clear(this);
         if (mediaPlayer != null) {
             mediaPlayer.stop();
             mediaPlayer.release();

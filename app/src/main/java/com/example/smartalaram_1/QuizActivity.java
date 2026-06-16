@@ -190,8 +190,11 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void stopAlarm() {
+        AlarmState.clear(this);
+
         Intent serviceIntent = new Intent(this, AlarmSoundService.class);
         stopService(serviceIntent);
+
         AlarmReceiver.cancelNotification(this);
     }
 

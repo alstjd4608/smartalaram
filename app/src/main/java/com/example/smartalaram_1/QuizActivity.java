@@ -59,10 +59,10 @@ public class QuizActivity extends AppCompatActivity {
         setShowWhenLocked(true);
         setTurnScreenOn(true);
 
-        KeyguardManager keyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
-        if (keyguardManager != null) {
-            keyguardManager.requestDismissKeyguard(this, null);
-        }
+        // KeyguardManager keyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+        // if (keyguardManager != null) {
+        //     keyguardManager.requestDismissKeyguard(this, null);
+        // }
 
         getWindow().addFlags(
             WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON

@@ -78,7 +78,7 @@ public class AlarmSoundService extends Service {
         NotificationChannel channel = new NotificationChannel(
                 CHANNEL_ID,
                 "알람 서비스",
-                NotificationManager.IMPORTANCE_LOW
+                NotificationManager.IMPORTANCE_HIGH
         );
         channel.setDescription("알람 소리 재생 서비스");
         manager.createNotificationChannel(channel);

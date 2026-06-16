@@ -58,11 +58,14 @@ public class AlarmSoundService extends Service {
 
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_notification)
-                .setContentTitle("알람이 울리고 있습니다")
-                .setContentText("탭하여 문제 풀이 화면으로 이동")
+                .setContentTitle("퍼즐 알람")
+                .setContentText("문제를 풀어 알람을 종료하세요")
                 .setContentIntent(pendingIntent)
+                .setFullScreenIntent(pendingIntent, true)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setCategory(NotificationCompat.CATEGORY_ALARM)
                 .setOngoing(true)
-                .setPriority(NotificationCompat.PRIORITY_LOW)
+                .setAutoCancel(false)
                 .build();
 
         startForeground(FOREGROUND_ID, notification);
